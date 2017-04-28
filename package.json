@@ -1,0 +1,26 @@
+{
+  "name": "regex-fun",
+  "version": "1.0.0",
+  "description": "Compose regular expressions with functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TehShrike/regex-fun.git"
+  },
+  "keywords": [
+    "regex",
+    "compose",
+    "functions",
+    "regular",
+    "expressions"
+  ],
+  "author": "TehShrike",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/TehShrike/regex-fun/issues"
+  },
+  "homepage": "https://github.com/TehShrike/regex-fun#readme"
+}
