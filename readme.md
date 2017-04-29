@@ -50,45 +50,45 @@ either(/this/, /that/, 'other thing') // => /(?:this|that|other thing)/
 capture(/\w+/, either('this', 'that')) // => /(\w+(?:this|that))/
 ```
 
-## `flags(input, flags)`
+## `flags(flags, ...input)`
 
 ```js
-flags(/HOWDY/i, 'gm') // => /HOWDY/gm
+flags('gm', /HOWDY/i) // => /HOWDY/gm
 ```
 
 ## Greedy matching
 
-### `anyNumber(input)`
+### `anyNumber(...input)`
 
 ```js
 anyNumber('wat') // => /(?:wat)*/
 ```
 
-### `oneOrMore(input)`
+### `oneOrMore(...input)`
 
 ```js
 oneOrMore('wat') // => /(?:wat)+/
 ```
 
-### `optional(input)`
+### `optional(...input)`
 
 ```js
 optional('wat') // => /(?:wat)?/
 ```
 
-### `exactly(n, input)`
+### `exactly(n, ...input)`
 
 ```js
 exactly(2, 'wat') // => /(?:wat){2}/
 ```
 
-### `atLeast(n, input)`
+### `atLeast(n, ...input)`
 
 ```js
 atLeast(3, 'wat') // => /(?:wat){3,}/
 ```
 
-### `between(n, m, input)`
+### `between(n, m, ...input)`
 
 ```js
 between(4, 5, 'wat') // => /(?:wat){4,5}/
@@ -96,37 +96,37 @@ between(4, 5, 'wat') // => /(?:wat){4,5}/
 
 ## Non-greedy matching
 
-### `anyNumberNonGreedy(input)`
+### `anyNumberNonGreedy(...input)`
 
 ```js
 anyNumberNonGreedy('wat') // => /(?:wat)*?/
 ```
 
-### `oneOrMoreNonGreedy(input)`
+### `oneOrMoreNonGreedy(...input)`
 
 ```js
 oneOrMoreNonGreedy('wat') // => /(?:wat)+?/
 ```
 
-### `optionalNonGreedy(input)`
+### `optionalNonGreedy(...input)`
 
 ```js
 optionalNonGreedy('wat') // => /(?:wat)??/
 ```
 
-### `exactlyNonGreedy(n, input)`
+### `exactlyNonGreedy(n, ...input)`
 
 ```js
 exactlyNonGreedy(2, 'wat') // => /(?:wat){2}?/
 ```
 
-### `atLeastNonGreedy(n, input)`
+### `atLeastNonGreedy(n, ...input)`
 
 ```js
 atLeastNonGreedy(3, 'wat') // => /(?:wat){3,}?/
 ```
 
-### `betweenNonGreedy(n, m, input)`
+### `betweenNonGreedy(n, m, ...input)`
 
 ```js
 betweenNonGreedy(4, 5, 'wat') // => /(?:wat){4,5}?/
