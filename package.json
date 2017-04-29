@@ -1,7 +1,7 @@
 {
   "name": "regex-fun",
   "version": "1.0.0",
-  "description": "Compose regular expressions with functions",
+  "description": "Compose regular expressions using functions",
   "main": "index.js",
   "scripts": {
     "test": "tape *-test.js && jsmd readme.md"
