@@ -29,7 +29,7 @@ const {
 ```js
 const anyGreeting = either('howdy', 'hi', 'hey')
 const regex = combine(anyGreeting, optional(','), ' ', capture(/\w+/))
-regex // => /(?:howdy|hi|hey),(?:,) (\w+)/
+regex // => /(?:howdy|hi|hey)(?:,)? (\w+)/
 'hey bub'.match(regex)[1] // => bub
 ```
 
