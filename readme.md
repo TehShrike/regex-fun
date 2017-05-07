@@ -1,12 +1,6 @@
-Compose regular expressions using functions.
+Build regular expressions with functions.
 
-If you see a function missing, open a pull request, otherwise I'll add new functions as I need them.
-
-Every function returns a regular expression without any flags.  If you want any flags set, make sure to call the `flags` function on the final output.
-
-Regular expression `input` may be either a `RegExp` or a string.  If it is a string, regex characters will be escaped - `anyNumber('a+')` will match any number of occurrences of `a+` in a string (`/a\+*/`).
-
-# API
+# Quick example
 
 <!--js
 const {
@@ -32,6 +26,42 @@ const {
 } = require('./')
 -->
 
+```js
+const anyGreeting = either('howdy', 'hi', 'hey')
+const regex = combine(anyGreeting, optional(','), ' ', capture(/\w+/))
+regex // => /(?:howdy|hi|hey)(?:,)? (\w+)/
+'hey bub'.match(regex)[1] // => 'bub'
+```
+
+# API
+
+Functions return a regular expression without flags.  If you want any flags, call the `flags` function last.
+
+Regular expression `input` may be either a `RegExp` or a string.  If it is a string, regex characters will be escaped - `anyNumber('a+')` will match any number of occurrences of `a+` in a string (`/a\+*/`).
+
+```
+const {
+	combine,
+	flags,
+	capture,
+	either,
+
+	anyNumber,
+	oneOrMore,
+	optional,
+	exactly,
+	atLeast,
+	between,
+
+	anyNumberNonGreedy,
+	oneOrMoreNonGreedy,
+	optionalNonGreedy,
+	exactlyNonGreedy,
+	atLeastNonGreedy,
+	betweenNonGreedy,
+
+} = require('regex-fun')
+```
 ## `combine(...input)`
 
 ```js
@@ -166,6 +196,8 @@ const regexThatMatchesVerses = combine(
 	range
 )
 ```
+
+If you see a function missing, open a pull request, otherwise I'll add new functions as I need them.
 
 # License
 
