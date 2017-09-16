@@ -4,13 +4,15 @@ const regexSource = require('./regex-source')
 const combine = returnsRegex((...args) => escapeInputForCombining(...args).join(''))
 const guaranteeAtomic = regex => isAtomic(regex) ? regex : `(?:${regexSource(regex)})`
 const escapeRegex = str => str.replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&')
+const ifRegex = (input, ifCase, elseIfCase) => input instanceof RegExp ? ifCase(input) : elseIfCase(input)
+const escapeInputAndReturnString = regex => ifRegex(regex, regex => regex.source, escapeRegex)
 
 module.exports = {
 	combine,
 	either: makeJoiningFunction('(?:', '|', ')'),
 	capture: makeJoiningFunction('(', '', ')'),
 
-	flags: (flags, ...args) => new RegExp(combine(...args), flags),
+	flags: (flags, ...args) => new RegExp(combine(...args).source, flags),
 
 	anyNumber: suffix('*'),
 	oneOrMore: suffix('+'),
@@ -27,14 +29,6 @@ module.exports = {
 	betweenNonGreedy: (n, m, ...regexes) => suffix(`{${n},${m}}?`)(...regexes),
 }
 
-function escapeInputAndReturnString(regex) {
-	if (regex instanceof RegExp) {
-		return regex.source
-	}	else {
-		return escapeRegex(regex)
-	}
-}
-
 function removeNonCapturingGroupIfExists(regexString) {
 	const match = /^\(\?:(.+)\)$/.exec(regexString)
 	return match ? match[1] : regexString
@@ -49,7 +43,7 @@ function escapeInputForCombining(...args) {
 }
 
 function returnsRegex(fn) {
-	return (...args) => new RegExp(fn(...args))
+	return (...args) => ifRegex(fn(...args), regex => regex, input => new RegExp(input))
 }
 
 function makeJoiningFunction(openingCharacter, joinCharacter, closingCharacter) {
