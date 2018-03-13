@@ -183,7 +183,6 @@ const secondHalfOfRange = combine(
 	'-',
 	either(
 		/([a-z])/,
-		/(\d+)([a-z])/,
 		chapterAndVerse,
 		numberAndOptionalLetter
 	)
