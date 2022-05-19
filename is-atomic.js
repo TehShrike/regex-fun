@@ -1,8 +1,8 @@
-const regexSource = require('./regex-source')
+const regexSource = require(`./regex-source.js`)
 
 const closingCharacters = {
-	'(': ')',
-	'[': ']',
+	'(': `)`,
+	'[': `]`,
 }
 
 module.exports = function isAtomic(regex) {

@@ -1,5 +1,5 @@
-const tape = require('tape')
-const isAtomic = require('./is-atomic')
+const tape = require(`tape`)
+const isAtomic = require(`./is-atomic.js`)
 
 const test = (description, fn) => tape(description, t => {
 	fn({
