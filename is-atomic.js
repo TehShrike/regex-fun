@@ -24,22 +24,21 @@ function enclosedByTopLevelCharacters(string) {
 		return false
 	}
 
-	return !isClosedBeforeEndOfString(0, string, openingCharacter, closingCharacter)
+	return !isClosedBeforeEndOfString(string, openingCharacter, closingCharacter)
 }
 
 
-function isClosedBeforeEndOfString(depth, string, openingCharacter, closingCharacter) {
-	if (string.length === 1 && string[0] === closingCharacter && depth === 1) {
-		return false
-	}
-	const [ nextCharacter, ...restOfCharacters ] = string
-	const newDepth = calculateNewDepth(depth, openingCharacter, closingCharacter, nextCharacter)
+function isClosedBeforeEndOfString(string, openingCharacter, closingCharacter) {
+	let depth = 0
 
-	if (newDepth === 0) {
-		return true
+	for (let characterIndex = 0; characterIndex < string.length - 1; ++characterIndex) {
+		depth = calculateNewDepth(depth, openingCharacter, closingCharacter, string[characterIndex])
+		if (depth === 0) {
+			return true
+		}
 	}
 
-	return isClosedBeforeEndOfString(newDepth, restOfCharacters, openingCharacter, closingCharacter)
+	return false
 }
 
 function calculateNewDepth(previousDepth, openingCharacter, closingCharacter, character) {
