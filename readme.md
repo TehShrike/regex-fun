@@ -3,7 +3,7 @@ Build regular expressions with functions.
 # Quick example
 
 <!--js
-const {
+import {
 	combine,
 	flags,
 	capture,
@@ -23,7 +23,7 @@ const {
 	atLeastNonGreedy,
 	betweenNonGreedy,
 
-} = require('./')
+} from './'
 -->
 
 ```js
@@ -40,7 +40,7 @@ Functions return a regular expression without flags.  If you want any flags, cal
 Regular expression `input` may be either a `RegExp` or a string.  If it is a string, regex characters will be escaped - `anyNumber('a+')` will match any number of occurrences of `a+` in a string (`/a\+*/`).
 
 ```
-const {
+import {
 	combine,
 	flags,
 	capture,
@@ -60,7 +60,11 @@ const {
 	atLeastNonGreedy,
 	betweenNonGreedy,
 
-} = require('regex-fun')
+} from 'regex-fun'
+
+// or
+
+import * as r from 'regex-fun'
 ```
 ## `combine(...input)`
 

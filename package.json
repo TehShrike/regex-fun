@@ -3,8 +3,10 @@
   "version": "2.0.3",
   "description": "Build regular expressions with functions",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "tape *-test.js && jsmd readme.md"
+    "test": "node index-test.js && node is-atomic-test.js",
+    "test-readme": "jsmd readme.md # I would like to get this working again"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,6 @@
   },
   "homepage": "https://github.com/TehShrike/regex-fun#readme",
   "devDependencies": {
-    "jsmd": "^1.0.1",
-    "tape": "4.11.0"
+    "jsmd": "^2.0.0"
   }
 }

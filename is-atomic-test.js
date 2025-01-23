@@ -1,15 +1,16 @@
-const tape = require(`tape`)
-const isAtomic = require(`./is-atomic.js`)
+import { strict as assert } from 'node:assert'
 
-const test = (description, fn) => tape(description, t => {
-	fn({
-		assertAtomic: regex => t.equal(isAtomic(regex), true, `${regex.source} should be atomic`),
-		assertNotAtomic: regex => t.equal(isAtomic(regex), false, `${regex.source} should not be atomic`),
-	})
-	t.end()
-})
+import isAtomic from './is-atomic.js'
 
-test(`atomic regexes`, ({ assertAtomic }) => {
+const assertAtomic = regex => assert.equal(isAtomic(regex), true, `${regex.source} should be atomic`)
+const assertNotAtomic = regex => assert.equal(isAtomic(regex), false, `${regex.source} should not be atomic`)
+
+const test = (description, fn) => {
+	fn()
+	console.log(`"${description}" passed`)
+}
+
+test(`atomic regexes`, () => {
 	assertAtomic(/(wat)/)
 	assertAtomic(/[wat]/)
 	assertAtomic(/(oh(what)now)/)
@@ -19,7 +20,7 @@ test(`atomic regexes`, ({ assertAtomic }) => {
 	assertAtomic(/a/)
 })
 
-test(`non-atomic regex`, ({ assertNotAtomic }) => {
+test(`non-atomic regex`, () => {
 	assertNotAtomic(/(wat)*/)
 	assertNotAtomic(/[wat][oh]/)
 	assertNotAtomic(/now(oh(what))/)

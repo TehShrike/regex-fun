@@ -1,11 +1,11 @@
-const regexSource = require(`./regex-source.js`)
+import regexSource from './regex-source.js'
 
 const closingCharacters = {
 	'(': `)`,
 	'[': `]`,
 }
 
-module.exports = function isAtomic(regex) {
+export default function isAtomic(regex) {
 	const string = regexSource(regex)
 
 	return /^\w$/.test(string) || enclosedByTopLevelCharacters(string)

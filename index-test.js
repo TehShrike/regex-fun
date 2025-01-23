@@ -1,4 +1,6 @@
-const {
+import { strict as assert } from 'node:assert'
+
+import {
 	combine,
 	flags,
 	capture,
@@ -17,18 +19,15 @@ const {
 	exactlyNonGreedy,
 	atLeastNonGreedy,
 	betweenNonGreedy,
+} from './index.js'
 
-} = require(`.`)
+const compareRegex = t => (actual, expected, description = `Matching ${expected.toString()}`) => assert.equal(actual.toString(), expected.toString(), description)
 
-const tape = require(`tape`)
-
-const compareRegex = t => (actual, expected, description = `Matching ${expected.toString()}`) => t.equals(actual.toString(), expected.toString(), description)
-
-const test = (description, fn) => tape(description, t => {
-	const assertEquals = compareRegex(t)
+const test = (description, fn) => {
+	const assertEquals = compareRegex()
 	fn(assertEquals)
-	t.end()
-})
+	console.log(`"${description}" passed`)
+}
 
 test(`combine`, assertEquals => {
 	assertEquals(combine(/a/, /b/, /c/), /abc/)
