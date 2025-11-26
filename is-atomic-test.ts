@@ -1,11 +1,15 @@
 import { strict as assert } from 'node:assert'
 
-import isAtomic from './is-atomic.js'
+import isAtomic from './is-atomic.ts'
 
-const assertAtomic = regex => assert.equal(isAtomic(regex), true, `${regex.source} should be atomic`)
-const assertNotAtomic = regex => assert.equal(isAtomic(regex), false, `${regex.source} should not be atomic`)
+const assertAtomic = (regex: RegExp): void => {
+	assert.equal(isAtomic(regex), true, `${regex.source} should be atomic`)
+}
+const assertNotAtomic = (regex: RegExp): void => {
+	assert.equal(isAtomic(regex), false, `${regex.source} should not be atomic`)
+}
 
-const test = (description, fn) => {
+const test = (description: string, fn: () => void): void => {
 	fn()
 	console.log(`"${description}" passed`)
 }
@@ -28,4 +32,3 @@ test(`non-atomic regex`, () => {
 
 	assertNotAtomic(/aa/)
 })
-

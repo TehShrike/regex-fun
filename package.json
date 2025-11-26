@@ -3,9 +3,16 @@
   "version": "3.0.0",
   "description": "Build regular expressions with functions",
   "main": "index.js",
+  "types": "index.d.ts",
   "type": "module",
+  "files": [
+    "*.js",
+    "*.d.ts"
+  ],
   "scripts": {
-    "test": "node index-test.js && node is-atomic-test.js",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "node index-test.ts && node is-atomic-test.ts",
+    "test:types": "tsc --noEmit",
     "test-readme": "jsmd readme.md # I would like to get this working again"
   },
   "repository": {
@@ -26,6 +33,8 @@
   },
   "homepage": "https://github.com/TehShrike/regex-fun#readme",
   "devDependencies": {
-    "jsmd": "^2.0.0"
+    "@types/node": "^24.10.1",
+    "jsmd": "^2.0.0",
+    "typescript": "^5.7.2"
   }
 }

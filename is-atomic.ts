@@ -1,17 +1,17 @@
-import regexSource from './regex-source.js'
+import regexSource from './regex-source.ts'
 
-const closingCharacters = {
+const closingCharacters: Record<string, string> = {
 	'(': `)`,
 	'[': `]`,
 }
 
-export default function isAtomic(regex) {
+export default function isAtomic(regex: RegExp | string): boolean {
 	const string = regexSource(regex)
 
 	return /^\w$/.test(string) || enclosedByTopLevelCharacters(string)
 }
 
-function enclosedByTopLevelCharacters(string) {
+function enclosedByTopLevelCharacters(string: string): boolean {
 	const openingCharacter = string[0]
 	const closingCharacter = closingCharacters[openingCharacter]
 
@@ -28,7 +28,7 @@ function enclosedByTopLevelCharacters(string) {
 }
 
 
-function isClosedBeforeEndOfString(string, openingCharacter, closingCharacter) {
+function isClosedBeforeEndOfString(string: string, openingCharacter: string, closingCharacter: string): boolean {
 	let depth = 0
 
 	for (let characterIndex = 0; characterIndex < string.length - 1; ++characterIndex) {
@@ -41,7 +41,7 @@ function isClosedBeforeEndOfString(string, openingCharacter, closingCharacter) {
 	return false
 }
 
-function calculateNewDepth(previousDepth, openingCharacter, closingCharacter, character) {
+function calculateNewDepth(previousDepth: number, openingCharacter: string, closingCharacter: string, character: string): number {
 	if (character === openingCharacter) {
 		return previousDepth + 1
 	} else if (character === closingCharacter) {

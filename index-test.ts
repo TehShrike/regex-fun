@@ -19,11 +19,13 @@ import {
 	exactlyNonGreedy,
 	atLeastNonGreedy,
 	betweenNonGreedy,
-} from './index.js'
+} from './index.ts'
 
-const compareRegex = t => (actual, expected, description = `Matching ${expected.toString()}`) => assert.equal(actual.toString(), expected.toString(), description)
+const compareRegex = () => (actual: RegExp, expected: RegExp, description = `Matching ${expected.toString()}`): void => {
+	assert.equal(actual.toString(), expected.toString(), description)
+}
 
-const test = (description, fn) => {
+const test = (description: string, fn: (assertEquals: (actual: RegExp, expected: RegExp, description?: string) => void) => void): void => {
 	const assertEquals = compareRegex()
 	fn(assertEquals)
 	console.log(`"${description}" passed`)

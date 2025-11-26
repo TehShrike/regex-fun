@@ -1,2 +1,6 @@
 node_modules
 .eslintcache
+
+# Build artifacts
+*.js
+*.d.ts

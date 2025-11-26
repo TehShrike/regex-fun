@@ -1,0 +1,10 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"noEmit": false,
+		"declaration": true,
+		"allowImportingTsExtensions": false,
+		"rewriteRelativeImportExtensions": true
+	},
+	"include": ["index.ts", "is-atomic.ts", "regex-source.ts"]
+}
